@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kainz World | Luxury x Street Fashion</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.95);
+      border-bottom: 1px solid #1f1f1f;
+      backdrop-filter: blur(8px);
+    }
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .brand h1 {
+      font-size: 1.8rem;
+      letter-spacing: 0.28em;
+      font-weight: 900;
+    }
+    .brand p {
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      color: #9a9a9a;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: #d2d2d2;
+      font-size: 0.95rem;
+    }
+    nav a:hover { color: #fff; }
+    .hero {
+      background: linear-gradient(to bottom, #161616, #000);
+      border-bottom: 1px solid #1f1f1f;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+      padding: 80px 0;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      color: #8f8f8f;
+      font-size: 0.78rem;
+      margin-bottom: 16px;
+    }
+    .hero h2 {
+      font-size: clamp(2.4rem, 7vw, 4.8rem);
+      line-height: 1.02;
+      font-weight: 900;
+      max-width: 700px;
+    }
+    .hero p {
+      color: #b4b4b4;
+      margin-top: 22px;
+      max-width: 600px;
+      font-size: 1.05rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 18px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+    .btn-light {
+      background: #fff;
+      color: #000;
+    }
+    .btn-light:hover { background: #e6e6e6; }
+    .btn-dark {
+      border: 1px solid #303030;
+      background: transparent;
+      color: #fff;
+    }
+    .btn-dark:hover { background: #111; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+      max-width: 620px;
+    }
+    .stat-box {
+      border: 1px solid #1f1f1f;
+      background: #090909;
+      border-radius: 22px;
+      padding: 20px;
+    }
+    .stat-box strong {
+      display: block;
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+    }
+    .stat-box span { color: #9a9a9a; font-size: 0.92rem; }
+    .hero-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .visual-card {
+      border: 1px solid #1f1f1f;
+      background: #0b0b0b;
+      border-radius: 28px;
+      padding: 16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+    }
+    .visual-card.offset { margin-top: 40px; }
+    .visual-img {
+      height: 280px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #4c4c4c, #090909);
+      margin-bottom: 14px;
+    }
+    .visual-card p { color: #8f8f8f; font-size: 0.9rem; }
+    .visual-card h3 { font-size: 1.2rem; margin-top: 4px; }
+    .feature-strip {
+      border-bottom: 1px solid #1f1f1f;
+      background: #080808;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 24px 0;
+    }
+    .feature-item {
+      border: 1px solid #1f1f1f;
+      border-radius: 22px;
+      padding: 18px;
+      background: #0d0d0d;
+    }
+    .feature-item h4 { margin-bottom: 6px; }
+    .feature-item p { color: #9d9d9d; font-size: 0.93rem; }
+    section { padding: 76px 0; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .section-head h3 { font-size: 2.2rem; }
+    .section-head p {
+      max-width: 520px;
+      color: #9b9b9b;
+      font-size: 0.95rem;
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .category-card, .product-card, .info-box {
+      border: 1px solid #1f1f1f;
+      background: #090909;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+    .category-card {
+      padding: 18px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .category-card:hover, .product-card:hover {
+      transform: translateY(-4px);
+      border-color: #353535;
+    }
+    .card-img {
+      height: 180px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #343434, #090909);
+      margin-bottom: 16px;
+    }
+    .category-card h4 { font-size: 1.25rem; margin-bottom: 8px; }
+    .category-card p { color: #a0a0a0; font-size: 0.94rem; }
+    .category-card a {
+      display: inline-block;
+      margin-top: 16px;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+    .products-wrap { background: rgba(255,255,255,0.02); }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .product-image {
+      height: 290px;
+      background: linear-gradient(135deg, #4e4e4e, #050505);
+      position: relative;
+    }
+    .tag {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      border: 1px solid #2d2d2d;
+      background: rgba(0,0,0,0.75);
+      color: #e8e8e8;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+    }
+    .product-content { padding: 18px; }
+    .product-content h4 { font-size: 1.08rem; }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      gap: 14px;
+    }
+    .price-row strong { font-size: 1.28rem; }
+    .price-row span { color: #8f8f8f; font-size: 0.9rem; }
+    .product-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .product-buttons a {
+      flex: 1;
+      text-align: center;
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 0.93rem;
+    }
+    .buy-btn {
+      background: #fff;
+      color: #000;
+    }
+    .detail-btn {
+      border: 1px solid #303030;
+      color: #fff;
+    }
+    .signup-box {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      border: 1px solid #1f1f1f;
+      background: linear-gradient(135deg, #090909, #000);
+      border-radius: 34px;
+      padding: 34px;
+    }
+    .signup-box p { color: #9c9c9c; margin-top: 12px; }
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+    }
+    input {
+      width: 100%;
+      background: #101010;
+      border: 1px solid #262626;
+      color: #fff;
+      padding: 15px 16px;
+      border-radius: 18px;
+      font-size: 1rem;
+    }
+    .about-wrap, .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .about-wrap p, .info-box p, .social-box p { color: #a2a2a2; }
+    .info-box, .social-box {
+      border: 1px solid #1f1f1f;
+      border-radius: 32px;
+      background: #070707;
+      padding: 30px;
+    }
+    .social-line {
+      border: 1px solid #1f1f1f;
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin-top: 14px;
+      color: #d8d8d8;
+    }
+    footer {
+      border-top: 1px solid #1f1f1f;
+      padding: 28px 0;
+      color: #878787;
+      font-size: 0.92rem;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .signup-box,
+      .about-wrap,
+      .contact-grid,
+      .feature-grid,
+      .category-grid,
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid,
+      .signup-box,
+      .about-wrap,
+      .contact-grid,
+      .feature-grid,
+      .category-grid,
+      .product-grid,
+      .stats,
+      .hero-cards {
+        grid-template-columns: 1fr;
+      }
+      nav {
+        width: 100%;
+        justify-content: center;
+      }
+      .topbar-inner { justify-content: center; }
+      .section-head h3 { font-size: 1.8rem; }
+      .visual-card.offset { margin-top: 0; }
+      section { padding: 58px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <nav>
+   <a href="#new">New Arrivals</a>
+        <a href="#categories">Categories</a>
+        <a href="#featured">Featured</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+<div class="brand">
+  <img src="logo.jpg" alt="Kainz World Logo" style="height:70px;">
+</div>
+  <section class="hero" id="new">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Full Fashion Store</div>
+        <h2>Luxury Looks. Street Energy. Everyday Heat.</h2>
+        <p>
+          Shop shoes, clothing, shades, jewelry, purses, bags, hats, jerseys, and accessories — all in one place with a bold style built for the culture.
+        </p>
+        <div class="hero-buttons">
+          <a class="btn btn-light" href="#featured">Shop Collection</a>
+          <a class="btn btn-dark" href="#categories">View Categories</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat-box">
+            <strong>100+</strong>
+            <span>Fashion pieces</span>
+          </div>
+          <div class="stat-box">
+            <strong>Fast</strong>
+            <span>Order response</span>
+          </div>
+          <div class="stat-box">
+            <strong>Elite</strong>
+            <span>Street-luxury style</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-cards">
+        <div class="visual-card">
+          <div class="visual-img"></div>
+          <p>Featured Style</p>
+          <h3>Signature Sneaker Drop</h3>
+        </div>
+        <div class="visual-card offset">
+          <div class="visual-img"></div>
+          <p>Designer Edit</p>
+          <h3>Luxury Accessories</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="feature-strip">
+    <div class="container feature-grid">
+      <div class="feature-item">
+        <h4>Fast order handling</h4>
+        <p>Quick response on purchases and product questions.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Trusted style source</h4>
+        <p>Built on service, reputation, and real products.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Curated fashion</h4>
+        <p>Streetwear, designer, and standout accessories.</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="categories">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Shop by Category</div>
+          <h3>Everything in one store</h3>
+        </div>
+        <p>
+          Organize your products by category so customers can browse faster and feel like they’re shopping a real fashion brand.
+        </p>
+      </div>
+
+      <div class="category-grid">
+        <div class="category-card">
+          <div class="card-img"></div>
+          <h4>Shoes</h4>
+          <p>Sneakers, designer pairs, hype drops, and everyday heat.</p>
+          <a href="#featured">Shop Shoes</a>
+        </div>
+        <div class="category-card">
+          <div class="card-img"></div>
+          <h4>Clothing</h4>
+          <p>Tees, denim, outerwear, matching sets, and standout fits.</p>
+          <a href="#featured">Shop Clothing</a>
+        </div>
+        <div class="category-card">
+          <div class="card-img"></div>
+          <h4>Shades</h4>
+          <p>Luxury frames, bold looks, and statement eyewear.</p>
+          <a href="#featured">Shop Shades</a>
+        </div>
+        <div class="category-card">
+          <div class="card-img"></div>
+          <h4>Jewelry</h4>
+          <p>Chains, watches, rings, bracelets, and premium extras.</p>
+          <a href="#featured">Shop Jewelry</a>
+        </div>
+        <div class="category-card">
+          <div class="card-img"></div>
+          <h4>Purses</h4>
+          <p>Designer-inspired looks and fashion-forward carry pieces.</p>
+          <a href="#featured">Shop Purses</a>
+        </div>
+        <div class="category-card">
+          <div class="card-img"></div>
+          <h4>Bags</h4>
+          <p>Travel bags, crossbody styles, and everyday essentials.</p>
+          <a href="#featured">Shop Bags</a>
+        </div>
+        <div class="category-card">
+          <div class="card-img"></div>
+          <h4>Hats</h4>
+          <p>Caps, fitteds, and streetwear staples that finish the look.</p>
+          <a href="#featured">Shop Hats</a>
+        </div>
+        <div class="category-card">
+          <div class="card-img"></div>
+          <h4>Jerseys & Accessories</h4>
+          <p>Classic sports style, belts, wallets, and extra add-ons.</p>
+          <a href="#featured">Shop More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-wrap" id="featured">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Featured Products</div>
+          <h3>Top picks from the store</h3>
+        </div>
+        <p>Replace these with your real product photos, titles, prices, and direct links.</p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image"><span class="tag">Best Seller</span></div>
+          <div class="product-content">
+            <h4>Jordan Retro Collection</h4>
+            <div class="price-row"><strong>$220</strong><span>In stock</span></div>
+            <div class="product-buttons">
+              <a href="https://cash.app" class="buy-btn" target="_blank">Buy Now</a>
+              <a href="#contact" class="detail-btn">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image"><span class="tag">New Arrival</span></div>
+          <div class="product-content">
+            <h4>Designer Shades</h4>
+            <div class="price-row"><strong>$140</strong><span>In stock</span></div>
+            <div class="product-buttons">
+              <a href="https://cash.app" class="buy-btn" target="_blank">Buy Now</a>
+              <a href="#contact" class="detail-btn">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image"><span class="tag">Trending</span></div>
+          <div class="product-content">
+            <h4>Luxury Chain Set</h4>
+            <div class="price-row"><strong>$180</strong><span>In stock</span></div>
+            <div class="product-buttons">
+              <a href="https://cash.app" class="buy-btn" target="_blank">Buy Now</a>
+              <a href="#contact" class="detail-btn">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image"><span class="tag">Hot Pick</span></div>
+          <div class="product-content">
+            <h4>Premium Streetwear Set</h4>
+            <div class="price-row"><strong>$165</strong><span>In stock</span></div>
+            <div class="product-buttons">
+              <a href="https://cash.app" class="buy-btn" target="_blank">Buy Now</a>
+              <a href="#contact" class="detail-btn">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image"><span class="tag">Limited</span></div>
+          <div class="product-content">
+            <h4>Signature Travel Bag</h4>
+            <div class="price-row"><strong>$195</strong><span>In stock</span></div>
+            <div class="product-buttons">
+              <a href="https://cash.app" class="buy-btn" target="_blank">Buy Now</a>
+              <a href="#contact" class="detail-btn">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image"><span class="tag">Popular</span></div>
+          <div class="product-content">
+            <h4>Classic Sports Jersey</h4>
+            <div class="price-row"><strong>$95</strong><span>In stock</span></div>
+            <div class="product-buttons">
+              <a href="https://cash.app" class="buy-btn" target="_blank">Buy Now</a>
+              <a href="#contact" class="detail-btn">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image"><span class="tag">Fresh</span></div>
+          <div class="product-content">
+            <h4>Statement Hat Drop</h4>
+            <div class="price-row"><strong>$55</strong><span>In stock</span></div>
+            <div class="product-buttons">
+              <a href="https://cash.app" class="buy-btn" target="_blank">Buy Now</a>
+              <a href="#contact" class="detail-btn">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image"><span class="tag">Exclusive</span></div>
+          <div class="product-content">
+            <h4>Designer Purse Edit</h4>
+            <div class="price-row"><strong>$210</strong><span>In stock</span></div>
+            <div class="product-buttons">
+              <a href="https://cash.app" class="buy-btn" target="_blank">Buy Now</a>
+              <a href="#contact" class="detail-btn">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="signup-box">
+        <div>
+          <div class="eyebrow">Stay Locked In</div>
+          <h3>Get notified on new drops and restocks</h3>
+          <p>
+            Build your customer list here so people can follow the newest shoes, clothing arrivals, and exclusive fashion drops.
+          </p>
+        </div>
+        <div class="signup-form">
+          <input type="email" placeholder="Enter your email" />
+          <a href="#contact" class="btn btn-light" style="text-align:center;">Join the list</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="border-top: 1px solid #1f1f1f; background: rgba(255,255,255,0.02);">
+    <div class="container about-wrap">
+      <div>
+        <div class="eyebrow">About the Brand</div>
+        <h3>Kainz World is built for style, hustle, and presence</h3>
+      </div>
+      <div>
+        <p>
+          Kainz World is a full fashion brand blending luxury taste with streetwear energy. From sneakers and designer accessories to jerseys, bags, and everyday statement pieces, the brand is built to give customers a sharp look and a trusted place to shop.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-grid">
+      <div class="info-box">
+        <div class="eyebrow">Contact / Orders</div>
+        <h3 style="font-size: 2rem; margin-bottom: 14px;">Ready to shop or ask about an item?</h3>
+        <p>
+          Use this section for direct orders, product questions, and social media traffic. Replace the links below with your real business links.
+        </p>
+        <div class="hero-buttons" style="margin-top: 24px;">
+          <a class="btn btn-light" href="https://cash.app" target="_blank">Pay with Cash App</a>
+          <a class="btn btn-dark" href="https://facebook.com" target="_blank">Message on Facebook</a>
+          <a class="btn btn-dark" href="https://instagram.com" target="_blank">Message on Instagram</a>
+        </div>
+      </div>
+
+      <div class="social-box">
+        <div class="eyebrow">Business Info</div>
+        <div class="social-line">Facebook Marketplace / Business Page</div>
+        <div class="social-line">Instagram for drops and direct messages</div>
+        <div class="social-line">Add your phone number, email, shipping policy, and return policy here</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 Kainz World. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Privacy</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
